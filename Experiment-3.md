@@ -1,21 +1,17 @@
-<div align="center">
-
 # SQL Lab – Experiment 3
-### <span style="color:gray;">Conditional & Sorting Queries using EMPLOYEE Table</span>
-
-</div>
-
----
 
 ## Aim
 
-To perform advanced data retrieval using ORDER BY, LIKE, logical operators, and salary-based conditions in MariaDB/MySQL.
+To perform advanced data retrieval operations using ORDER BY, LIKE, IN, arithmetic operations and conditional clauses on the EMPLOYEE table.
 
 ---
 
-## Question 1 – Employees in Dept 30 in descending order of salary
+## Question 1
+
+List all employees and jobs in Department 30 in descending order by salary.
 
 ### Query
+
 ```sql
 SELECT ENAME, JOB, SAL
 FROM EMPLOYEE
@@ -25,21 +21,22 @@ ORDER BY SAL DESC;
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>JOB</th><th>SAL</th></tr>
-<tr><td>BLAKE</td><td>MANAGER</td><td>2850</td></tr>
-<tr><td>ALLEN</td><td>SALESMAN</td><td>1600</td></tr>
-<tr><td>TURNER</td><td>SALESMAN</td><td>1500</td></tr>
-<tr><td>WARD</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>MARTIN</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>JAMES</td><td>CLERK</td><td>950</td></tr>
-</table>
+| ENAME  | JOB      | SAL  |
+| ------ | -------- | ---- |
+| BLAKE  | MANAGER  | 2850 |
+| ALLEN  | SALESMAN | 1600 |
+| TURNER | SALESMAN | 1500 |
+| WARD   | SALESMAN | 1250 |
+| JAMES  | CLERK    | 950  |
 
 ---
 
-## Question 2 – Job and DeptNo (Name begins with A and ends with N, 5 letters)
+## Question 2
+
+List job and department number of employees whose name are five letters long, begin with “A” and end with “N”.
 
 ### Query
+
 ```sql
 SELECT JOB, DEPTNO
 FROM EMPLOYEE
@@ -48,18 +45,18 @@ WHERE ENAME LIKE 'A___N';
 
 ### Output
 
-<table>
-<tr><th>JOB</th><th>DEPTNO</th></tr>
-<tr><td>SALESMAN</td><td>30</td></tr>
-</table>
-
-(Employee: ALLEN)
+| JOB      | DEPTNO |
+| -------- | ------ |
+| SALESMAN | 30     |
 
 ---
 
-## Question 3 – Employees whose name starts with S
+## Question 3
+
+Display the name of employees whose name start with alphabet S.
 
 ### Query
+
 ```sql
 SELECT ENAME
 FROM EMPLOYEE
@@ -68,17 +65,19 @@ WHERE ENAME LIKE 'S%';
 
 ### Output
 
-<table>
-<tr><th>ENAME</th></tr>
-<tr><td>SMITH</td></tr>
-<tr><td>SCOTT</td></tr>
-</table>
+| ENAME |
+| ----- |
+| SMITH |
+| SCOTT |
 
 ---
 
-## Question 4 – Employees whose name ends with S
+## Question 4
+
+Display the names of employees whose name ends with alphabet S.
 
 ### Query
+
 ```sql
 SELECT ENAME
 FROM EMPLOYEE
@@ -87,33 +86,50 @@ WHERE ENAME LIKE '%S';
 
 ### Output
 
-<table>
-<tr><th>ENAME</th></tr>
-<tr><td>JONES</td></tr>
-<tr><td>ADAMS</td></tr>
-<tr><td>JAMES</td></tr>
-</table>
+| ENAME |
+| ----- |
+| JONES |
+| ADAMS |
 
 ---
 
-## Question 5 – Employees in Dept 10, 20, 40 or working as Clerk, Salesman or Analyst
+## Question 5
+
+Display the names of employees working in department number 10 or 20 or 40 or employees working as clerks, salesman or analyst.
 
 ### Query
+
 ```sql
-SELECT ENAME, DEPTNO, JOB
+SELECT ENAME
 FROM EMPLOYEE
 WHERE DEPTNO IN (10,20,40)
 OR JOB IN ('CLERK','SALESMAN','ANALYST');
 ```
 
 ### Output
-(Multiple matching records returned)
+
+| ENAME  |
+| ------ |
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
 
 ---
 
-## Question 6 – Employee number and names who earn commission
+## Question 6
+
+Display employee number and names for employees who earn commission.
 
 ### Query
+
 ```sql
 SELECT EMPNO, ENAME
 FROM EMPLOYEE
@@ -123,44 +139,81 @@ AND COMM > 0;
 
 ### Output
 
-<table>
-<tr><th>EMPNO</th><th>ENAME</th></tr>
-<tr><td>7499</td><td>ALLEN</td></tr>
-<tr><td>7521</td><td>WARD</td></tr>
-<tr><td>7654</td><td>MARTIN</td></tr>
-</table>
+| EMPNO | ENAME |
+| ----- | ----- |
+| 7499  | ALLEN |
+| 7521  | WARD  |
 
 ---
 
-## Question 7 – Employee number and total salary (Salary + Commission)
+## Question 7
+
+Display employee number and total salary for each employee.
 
 ### Query
+
 ```sql
-SELECT EMPNO, (SAL + IFNULL(COMM,0)) AS TOTAL_SALARY
+SELECT EMPNO, SAL + IFNULL(COMM,0) AS TOTAL_SALARY
 FROM EMPLOYEE;
 ```
 
 ### Output
-(Displays total salary for each employee)
+
+| EMPNO | TOTAL_SALARY |
+| ----- | ------------ |
+| 7369  | 800          |
+| 7499  | 1900         |
+| 7521  | 1750         |
+| 7566  | 2975         |
+| 7698  | 2850         |
+| 7782  | 2450         |
+| 7788  | 3000         |
+| 7839  | 5000         |
+| 7844  | 1500         |
+| 7876  | 1100         |
+| 7900  | 950          |
+| 7902  | 3000         |
+| 7934  | 1300         |
 
 ---
 
-## Question 8 – Employee number and annual salary
+## Question 8
+
+Display employee number and annual salary for each employee.
 
 ### Query
+
 ```sql
-SELECT EMPNO, (SAL * 12) AS ANNUAL_SALARY
+SELECT EMPNO, SAL * 12 AS ANNUAL_SALARY
 FROM EMPLOYEE;
 ```
 
 ### Output
-(Displays annual salary for each employee)
+
+| EMPNO | ANNUAL_SALARY |
+| ----- | ------------- |
+| 7369  | 9600          |
+| 7499  | 19200         |
+| 7521  | 15000         |
+| 7566  | 35700         |
+| 7698  | 34200         |
+| 7782  | 29400         |
+| 7788  | 36000         |
+| 7839  | 60000         |
+| 7844  | 18000         |
+| 7876  | 13200         |
+| 7900  | 11400         |
+| 7902  | 36000         |
+| 7934  | 15600         |
 
 ---
 
-## Question 9 – Clerks earning more than 3000
+## Question 9
+
+Display the names of all employees working as clerks and drawing a salary more than 3,000.
 
 ### Query
+
 ```sql
 SELECT ENAME
 FROM EMPLOYEE
@@ -170,16 +223,18 @@ AND SAL > 3000;
 
 ### Output
 
-<table>
-<tr><th>ENAME</th></tr>
-<tr><td>No rows returned</td></tr>
-</table>
+| ENAME         |
+| ------------- |
+| No rows found |
 
 ---
 
-## Question 10 – Clerk, Salesman or Analyst earning more than 3000
+## Question 10
+
+Display the names of employees who are working as clerk, salesman or analyst and drawing a salary more than 3,000.
 
 ### Query
+
 ```sql
 SELECT ENAME
 FROM EMPLOYEE
@@ -189,15 +244,11 @@ AND SAL > 3000;
 
 ### Output
 
-<table>
-<tr><th>ENAME</th></tr>
-<tr><td>No rows returned</td></tr>
-</table>
+| ENAME         |
+| ------------- |
+| No rows found |
 
 ---
 
-<div align="center">
-
-### Experiment 3 Completed Successfully
-
-</div>
+## Conclusion
+In this experiment, various SQL SELECT queries were performed using conditions such as DISTINCT, WHERE, BETWEEN, IN, NOT IN, and LIKE to retrieve specific data from the EMPLOYEE table.
