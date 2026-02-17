@@ -17,7 +17,6 @@ Experiments are updated regularly as they are completed in the lab.
 Each experiment includes:
 
 * Aim
-* Theory
 * SQL Queries
 * Output
 * Conclusion
