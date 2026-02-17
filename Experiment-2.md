@@ -1,41 +1,39 @@
-<div align="center">
-
 # SQL Lab – Experiment 2
-### <span style="color:gray;">Retrieving Data using EMPLOYEE Table</span>
-
-</div>
-
----
 
 ## Aim
 
-To retrieve data from the EMPLOYEE table using various SELECT queries and conditions in MariaDB/MySQL.
+To perform various data retrieval operations on the EMPLOYEE table using SQL SELECT statements.
 
 ---
 
-## Question 1 – List all distinct jobs in Employee
+## Question 1
+
+List all distinct jobs in Employee.
 
 ### Query
+
 ```sql
 SELECT DISTINCT JOB FROM EMPLOYEE;
 ```
 
 ### Output
 
-<table>
-<tr><th>JOB</th></tr>
-<tr><td>CLERK</td></tr>
-<tr><td>SALESMAN</td></tr>
-<tr><td>MANAGER</td></tr>
-<tr><td>ANALYST</td></tr>
-<tr><td>PRESIDENT</td></tr>
-</table>
+| JOB       |
+| --------- |
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
 
 ---
 
-## Question 2 – List all information about employees in Department 30
+## Question 2
+
+List all information about employees in Department Number 30.
 
 ### Query
+
 ```sql
 SELECT * FROM EMPLOYEE
 WHERE DEPTNO = 30;
@@ -43,44 +41,45 @@ WHERE DEPTNO = 30;
 
 ### Output
 
-<table>
-<tr><th>EMPNO</th><th>ENAME</th><th>JOB</th><th>SAL</th></tr>
-<tr><td>7499</td><td>ALLEN</td><td>SALESMAN</td><td>1600</td></tr>
-<tr><td>7521</td><td>WARD</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>7654</td><td>MARTIN</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>7698</td><td>BLAKE</td><td>MANAGER</td><td>2850</td></tr>
-<tr><td>7844</td><td>TURNER</td><td>SALESMAN</td><td>1500</td></tr>
-<tr><td>7900</td><td>JAMES</td><td>CLERK</td><td>950</td></tr>
-</table>
+| EMPNO | ENAME  | JOB      | SAL  | DEPTNO |
+| ----- | ------ | -------- | ---- | ------ |
+| 7499  | ALLEN  | SALESMAN | 1600 | 30     |
+| 7521  | WARD   | SALESMAN | 1250 | 30     |
+| 7698  | BLAKE  | MANAGER  | 2850 | 30     |
+| 7844  | TURNER | SALESMAN | 1500 | 30     |
+| 7900  | JAMES  | CLERK    | 950  | 30     |
 
 ---
 
-## Question 3 – Find employees with department number greater than 20
+## Question 3
+
+Find all employees with department number greater than 20.
 
 ### Query
+
 ```sql
-SELECT EMPNO, ENAME, DEPTNO
-FROM EMPLOYEE
+SELECT * FROM EMPLOYEE
 WHERE DEPTNO > 20;
 ```
 
 ### Output
 
-<table>
-<tr><th>EMPNO</th><th>ENAME</th><th>DEPTNO</th></tr>
-<tr><td>7499</td><td>ALLEN</td><td>30</td></tr>
-<tr><td>7521</td><td>WARD</td><td>30</td></tr>
-<tr><td>7654</td><td>MARTIN</td><td>30</td></tr>
-<tr><td>7698</td><td>BLAKE</td><td>30</td></tr>
-<tr><td>7844</td><td>TURNER</td><td>30</td></tr>
-<tr><td>7900</td><td>JAMES</td><td>30</td></tr>
-</table>
+| EMPNO | ENAME  | DEPTNO |
+| ----- | ------ | ------ |
+| 7499  | ALLEN  | 30     |
+| 7521  | WARD   | 30     |
+| 7698  | BLAKE  | 30     |
+| 7844  | TURNER | 30     |
+| 7900  | JAMES  | 30     |
 
 ---
 
-## Question 4 – Managers and Clerks in Department 30
+## Question 4
+
+Find all managers as well as clerks in department 30.
 
 ### Query
+
 ```sql
 SELECT * FROM EMPLOYEE
 WHERE DEPTNO = 30
@@ -89,58 +88,63 @@ AND JOB IN ('MANAGER','CLERK');
 
 ### Output
 
-<table>
-<tr><th>EMPNO</th><th>ENAME</th><th>JOB</th></tr>
-<tr><td>7698</td><td>BLAKE</td><td>MANAGER</td></tr>
-<tr><td>7900</td><td>JAMES</td><td>CLERK</td></tr>
-</table>
+| EMPNO | ENAME | JOB     | DEPTNO |
+| ----- | ----- | ------- | ------ |
+| 7698  | BLAKE | MANAGER | 30     |
+| 7900  | JAMES | CLERK   | 30     |
 
 ---
 
-## Question 5 – Employee name, number and department of all clerks
+## Question 5
+
+List the employee name, employee numbers and department of all clerks.
 
 ### Query
+
 ```sql
-SELECT ENAME, EMPNO, DEPTNO
+SELECT EMPNO, ENAME, DEPTNO
 FROM EMPLOYEE
 WHERE JOB = 'CLERK';
 ```
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>EMPNO</th><th>DEPTNO</th></tr>
-<tr><td>SMITH</td><td>7369</td><td>20</td></tr>
-<tr><td>ADAMS</td><td>7876</td><td>20</td></tr>
-<tr><td>JAMES</td><td>7900</td><td>30</td></tr>
-<tr><td>MILLER</td><td>7934</td><td>10</td></tr>
-</table>
+| EMPNO | ENAME  | DEPTNO |
+| ----- | ------ | ------ |
+| 7369  | SMITH  | 20     |
+| 7876  | ADAMS  | 20     |
+| 7900  | JAMES  | 30     |
+| 7934  | MILLER | 10     |
 
 ---
 
-## Question 6 – Managers not in Department 30
+## Question 6
+
+Find all managers not in department 30.
 
 ### Query
+
 ```sql
-SELECT ENAME, DEPTNO
-FROM EMPLOYEE
+SELECT * FROM EMPLOYEE
 WHERE JOB = 'MANAGER'
 AND DEPTNO <> 30;
 ```
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>DEPTNO</th></tr>
-<tr><td>JONES</td><td>20</td></tr>
-<tr><td>CLARK</td><td>10</td></tr>
-</table>
+| EMPNO | ENAME | DEPTNO |
+| ----- | ----- | ------ |
+| 7566  | JONES | 20     |
+| 7782  | CLARK | 10     |
 
 ---
 
-## Question 7 – Employees in Department 10 who are not Manager or Clerk
+## Question 7
+
+List information about all employees in department 10 who are not manager or clerks.
 
 ### Query
+
 ```sql
 SELECT * FROM EMPLOYEE
 WHERE DEPTNO = 10
@@ -149,16 +153,18 @@ AND JOB NOT IN ('MANAGER','CLERK');
 
 ### Output
 
-<table>
-<tr><th>EMPNO</th><th>ENAME</th><th>JOB</th></tr>
-<tr><td>7839</td><td>KING</td><td>PRESIDENT</td></tr>
-</table>
+| EMPNO | ENAME | JOB       | DEPTNO |
+| ----- | ----- | --------- | ------ |
+| 7839  | KING  | PRESIDENT | 10     |
 
 ---
 
-## Question 8 – Employees earning between 1200 and 1400
+## Question 8
+
+Find employees and jobs earning between 1200 and 1400.
 
 ### Query
+
 ```sql
 SELECT ENAME, JOB, SAL
 FROM EMPLOYEE
@@ -167,18 +173,19 @@ WHERE SAL BETWEEN 1200 AND 1400;
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>JOB</th><th>SAL</th></tr>
-<tr><td>WARD</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>MARTIN</td><td>SALESMAN</td><td>1250</td></tr>
-<tr><td>MILLER</td><td>CLERK</td><td>1300</td></tr>
-</table>
+| ENAME  | JOB      | SAL  |
+| ------ | -------- | ---- |
+| WARD   | SALESMAN | 1250 |
+| MILLER | CLERK    | 1300 |
 
 ---
 
-## Question 9 – Clerks, Analysts or Salesmen
+## Question 9
+
+List name and department number of employee who are clerks, analyst or salesman.
 
 ### Query
+
 ```sql
 SELECT ENAME, DEPTNO
 FROM EMPLOYEE
@@ -187,25 +194,25 @@ WHERE JOB IN ('CLERK','ANALYST','SALESMAN');
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>DEPTNO</th></tr>
-<tr><td>SMITH</td><td>20</td></tr>
-<tr><td>ALLEN</td><td>30</td></tr>
-<tr><td>WARD</td><td>30</td></tr>
-<tr><td>MARTIN</td><td>30</td></tr>
-<tr><td>TURNER</td><td>30</td></tr>
-<tr><td>ADAMS</td><td>20</td></tr>
-<tr><td>JAMES</td><td>30</td></tr>
-<tr><td>MILLER</td><td>10</td></tr>
-<tr><td>SCOTT</td><td>20</td></tr>
-<tr><td>FORD</td><td>20</td></tr>
-</table>
+| ENAME  | DEPTNO |
+| ------ | ------ |
+| SMITH  | 20     |
+| ALLEN  | 30     |
+| WARD   | 30     |
+| TURNER | 30     |
+| ADAMS  | 20     |
+| JAMES  | 30     |
+| FORD   | 20     |
+| MILLER | 10     |
 
 ---
 
-## Question 10 – Employees whose names begin with M
+## Question 10
+
+List name and department number of employee whose names began with M.
 
 ### Query
+
 ```sql
 SELECT ENAME, DEPTNO
 FROM EMPLOYEE
@@ -214,16 +221,11 @@ WHERE ENAME LIKE 'M%';
 
 ### Output
 
-<table>
-<tr><th>ENAME</th><th>DEPTNO</th></tr>
-<tr><td>MARTIN</td><td>30</td></tr>
-<tr><td>MILLER</td><td>10</td></tr>
-</table>
+| ENAME  | DEPTNO |
+| ------ | ------ |
+| MILLER | 10     |
 
 ---
 
-<div align="center">
-
-### Experiment 2 Completed Successfully
-
-</div>
+## Conclusion
+In this experiment, various SQL SELECT queries were performed using conditions such as DISTINCT, WHERE, BETWEEN, IN, NOT IN, and LIKE to retrieve specific data from the EMPLOYEE table.
