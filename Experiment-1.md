@@ -1,20 +1,11 @@
-<div align="center">
-
 # SQL Lab – Experiment 1
-### <span style="color:gray;">MariaDB / MySQL Implementation</span>
-
-</div>
-
----
 
 ## Aim
-
 To perform table creation using existing data, deletion, update, alter, and drop operations in MariaDB/MySQL.
 
 ---
 
-## Question 1 – Create Employee_Master Table
-
+## Question 1  
 Create `Employee_Master` table using data from `EMPLOYEE` table.
 
 ### Query
@@ -25,16 +16,16 @@ SELECT * FROM EMPLOYEE;
 
 ### Output
 
-<table>
-<tr><th>Status</th></tr>
-<tr><td>Query OK, 14 rows affected</td></tr>
-</table>
+| Message                    |
+|----------------------------|
+| Query OK, 14 rows affected |
 
 ---
 
-## Question 2 – Delete Records (DeptNo = 10)
+## Question 2  
+Delete all records from `Employee_Master` whose `DEPTNO` is 10.
 
-Department 10 contains 3 employees: CLARK, KING, MILLER.
+(Dept 10 contains 3 employees)
 
 ### Query
 ```sql
@@ -44,16 +35,16 @@ WHERE DEPTNO = 10;
 
 ### Output
 
-<table>
-<tr><th>Status</th></tr>
-<tr><td>Query OK, 3 rows affected</td></tr>
-</table>
+| Message                   |
+|---------------------------|
+| Query OK, 3 rows affected |
 
 ---
 
-## Question 3 – Increase Salary by 10% (DeptNo = 20)
+## Question 3  
+Increase salary by 10% for employees whose `DEPTNO` is 20.
 
-Department 20 contains 5 employees.
+(Dept 20 contains 5 employees)
 
 ### Query
 ```sql
@@ -64,15 +55,15 @@ WHERE DEPTNO = 20;
 
 ### Output
 
-<table>
-<tr><th>Status</th></tr>
-<tr><td>Query OK, 5 rows affected</td></tr>
-<tr><td>Rows matched: 5 &nbsp;&nbsp; Changed: 5 &nbsp;&nbsp; Warnings: 0</td></tr>
-</table>
+| Message                   |
+|---------------------------|
+| Query OK, 5 rows affected |
+| Rows matched: 5 Changed: 5 |
 
 ---
 
-## Question 4 – Alter Salary Column Size
+## Question 4  
+Alter column `SAL` to size `DECIMAL(10,2)` in `Employee_Master`.
 
 ### Query
 ```sql
@@ -82,15 +73,15 @@ MODIFY SAL DECIMAL(10,2);
 
 ### Output
 
-<table>
-<tr><th>Status</th></tr>
-<tr><td>Query OK, 11 rows affected</td></tr>
-<tr><td>Records: 11 &nbsp;&nbsp; Duplicates: 0 &nbsp;&nbsp; Warnings: 0</td></tr>
-</table>
+| Message                    |
+|----------------------------|
+| Query OK, 11 rows affected |
+| Records: 11 Duplicates: 0  |
 
 ---
 
-## Question 5 – Drop Employee_Master Table
+## Question 5  
+Drop `Employee_Master` table.
 
 ### Query
 ```sql
@@ -99,15 +90,11 @@ DROP TABLE Employee_Master;
 
 ### Output
 
-<table>
-<tr><th>Status</th></tr>
-<tr><td>Query OK</td></tr>
-</table>
+| Message  |
+|----------|
+| Query OK |
 
 ---
 
-<div align="center">
-
-### Experiment 1 Completed Successfully
-
-</div>
+## Conclusion
+Successfully performed table creation using existing table data, record deletion, salary update, column modification, and table deletion using SQL commands in MariaDB/MySQL.
